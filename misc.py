@@ -23,4 +23,3 @@ def test_divide():
 
     with pytest.raises(ValueError):
         divide(2, 0)
-
