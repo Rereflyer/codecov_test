@@ -20,3 +20,5 @@ def divide(a, b):
         raise ValueError("Cannot divide by zero")
     return a / b
 
+def square(x):
+    return x ** 2
