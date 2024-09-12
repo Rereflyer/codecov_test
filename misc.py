@@ -17,9 +17,9 @@ def test_multiply():
     assert multiply(2, 3) == 6
     assert multiply(-1, -1) == 1
 
-# def test_divide():
-#     assert divide(6, 2) == 3
-#     assert divide(-6, -2) == 3
+def test_divide():
+    assert divide(6, 2) == 3
+    assert divide(-6, -2) == 3
 
-#     with pytest.raises(ValueError):
-#         divide(2, 0)
+    with pytest.raises(ValueError):
+        divide(2, 0)
