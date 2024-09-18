@@ -5,3 +5,6 @@ htmlcov
 coverage.xml
 codecovcli_windows.exe
 build
+cmake_build
+*.gcov
+coverage.info
