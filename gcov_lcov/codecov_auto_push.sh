@@ -9,7 +9,11 @@ function install_if_not_exists() {
   package_name=$2
   if ! command -v $command_name &> /dev/null; then
     echo "$command_name 不存在，正在安装..."
-    sudo apt install $package_name
+    if [ $command_name == "lcov" ]; then
+      sudo apt-get install lcov
+    elif [ $command_name == "codecov" ]; then
+      python3 -m pip install $package_name
+    fi
   else
     echo "$command_name 已安装"
   fi
@@ -19,10 +23,9 @@ function install_if_not_exists() {
 install_if_not_exists lcov lcov
 
 # 编译
-cmake -S . -B cmake_build
+cmake -S . -DCMAKE_BUILD_TYPE=Debug -B cmake_build
 make -C cmake_build
-cd cmake_build
-./test_math_function
+./cmake_build/math_functions_test
 
 # 运行 pytest 并生成覆盖率报告
 lcov --capture --directory cmake_build --output-file coverage.info
