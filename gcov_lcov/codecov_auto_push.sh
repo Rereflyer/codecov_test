@@ -19,16 +19,18 @@ function install_if_not_exists() {
   fi
 }
 
-# 1. 检查并安装 pytest 和 pytest-cov
-install_if_not_exists lcov lcov
 
 # 编译
+cd gcov_lcov
 cmake -S . -DCMAKE_BUILD_TYPE=Debug -B cmake_build
 make -C cmake_build
 ./cmake_build/math_functions_test
 
-# 运行 pytest 并生成覆盖率报告
+# 1. 检查并安装lcov
+install_if_not_exists lcov lcov
 lcov --capture --directory cmake_build --output-file coverage.info
+
+# cd ..
 
 # 3. 获取当前仓库的最新 commit ID
 commit_id=$(git rev-parse HEAD)
@@ -37,4 +39,5 @@ commit_id=$(git rev-parse HEAD)
 install_if_not_exists codecov codecov-cli
 
 # 执行 codecov 上传命令
+# codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner -t ${CODECOV_TOKEN} -B main -C $commit_id -f gcov_lcov/coverage.info --git-service gitlab_enterprise
 codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner -t ${CODECOV_TOKEN} -B main -C $commit_id -f coverage.info --git-service gitlab_enterprise
