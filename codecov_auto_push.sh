@@ -39,7 +39,7 @@ commit_id=$(git rev-parse HEAD)
 install_if_not_exists codecov codecov-cli
 
 # 执行 codecov 上传命令
-echo "codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner -t ${CODECOV_TOKEN} -B main -C $commit_id -f gcov_lcov/coverage.info --git-service gitlab_enterprise"
+codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner -t ${CODECOV_TOKEN} -B main -C $commit_id -f gcov_lcov/coverage.info --git-service gitlab_enterprise
 # codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner -t ${CODECOV_TOKEN} -B main -C $commit_id -f coverage.info --git-service gitlab_enterprise
 
 ####################################### python test
@@ -50,7 +50,7 @@ install_if_not_exists pytest-cov pytest-cov==2.5.1
 
 cd py-cov
 # 运行 pytest 并生成覆盖率报告
-pytest --cov
+coverage run -m pytest
 
 # 2. 生成 coverage.xml 文件
 coverage xml -o coverage.xml
@@ -64,4 +64,4 @@ install_if_not_exists codecov codecov-cli
 cd ..
 
 # 执行 codecov 上传命令
-echo "codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner -t ${CODECOV_TOKEN} -B main -C $commit_id -f py-cov/coverage.xml --git-service gitlab_enterprise"
+codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner -t ${CODECOV_TOKEN} -B main -C $commit_id -f py-cov/coverage.xml --git-service gitlab_enterprise
