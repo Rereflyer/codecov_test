@@ -14,22 +14,20 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fprofile-arcs -ftest-coverage")
 endif()
 
-# 添加源码文件
-set(SOURCES
-    math_functions.cpp
-    test_math_functions.cpp
-)
+# # 添加源码文件
+# set(SOURCES
+#     math_functions.cpp
+#     test_math_functions.cpp
+# )
+message(STATUS "CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
+message(STATUS "CMAKE_EXE_LINKER_FLAGS: ${CMAKE_EXE_LINKER_FLAGS}")
 
-# 创建可执行文件
-add_executable(math_functions_test ${SOURCES})
+add_library(math_functions SHARED math_functions.cpp)
+add_library(functions SHARED functions.cpp)
 
-# 链接覆盖率生成库（gcov）
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    target_link_libraries(math_functions_test gcov)
+if(CI_TEST)
+    add_subdirectory(tests/ci_test)
+elseif(DAILY_TEST)
+    add_subdirectory(tests/daily_test)
 endif()
 
-# 启用测试
-enable_testing()
-
-# 添加测试
-add_test(NAME MathFunctionsTest COMMAND math_functions_test)

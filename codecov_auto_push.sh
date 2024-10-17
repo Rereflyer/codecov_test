@@ -19,12 +19,14 @@ function install_if_not_exists() {
   fi
 }
 
-####################################### gcov test
+####################################### gcov test ci
 # 编译
 cd gcov_lcov
-cmake -S . -DCMAKE_BUILD_TYPE=Debug -B cmake_build
+rm -rf cmake_build
+rm coverage.info
+cmake -S . -DCMAKE_BUILD_TYPE=Debug -DCI_TEST=1 -B cmake_build
 make -C cmake_build
-./cmake_build/math_functions_test
+./cmake_build/tests/ci_test/math_functions_test_ci
 
 # 1. 检查并安装lcov
 install_if_not_exists lcov lcov
@@ -39,8 +41,32 @@ commit_id=$(git rev-parse HEAD)
 install_if_not_exists codecov codecov-cli
 
 # 执行 codecov 上传命令
-codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner -t ${CODECOV_TOKEN} -B main -C $commit_id -f gcov_lcov/coverage.info --git-service gitlab_enterprise
+codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner1 -t ${CODECOV_TOKEN} -B main -C $commit_id -f gcov_lcov/coverage.info --git-service gitlab_enterprise -F ci --job-code test1
 # codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner -t ${CODECOV_TOKEN} -B main -C $commit_id -f coverage.info --git-service gitlab_enterprise
+
+####################################### gcov test daily
+# 编译
+cd gcov_lcov
+rm -rf cmake_build
+rm coverage.info
+cmake -S . -DCMAKE_BUILD_TYPE=Debug -DDAILY_TEST=1 -B cmake_build
+make -C cmake_build
+./cmake_build/tests/daily_test/math_functions_test_daily
+
+# 1. 检查并安装lcov
+install_if_not_exists lcov lcov
+lcov --capture --directory cmake_build --output-file coverage.info
+
+cd ..
+
+# 3. 获取当前仓库的最新 commit ID
+commit_id=$(git rev-parse HEAD)
+
+# 安装 codecov（如果不存在）
+install_if_not_exists codecov codecov-cli
+
+# 执行 codecov 上传命令
+codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner1 -t ${CODECOV_TOKEN} -B main -C $commit_id -f gcov_lcov/coverage.info --git-service gitlab_enterprise -F daily --job-code test1
 
 ####################################### python test
 # 1. 检查并安装 pytest 和 pytest-cov
@@ -64,4 +90,4 @@ install_if_not_exists codecov codecov-cli
 cd ..
 
 # 执行 codecov 上传命令
-codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner -t ${CODECOV_TOKEN} -B main -C $commit_id -f py-cov/coverage.xml --git-service gitlab_enterprise
+codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner2 -t ${CODECOV_TOKEN} -B main -C $commit_id -f py-cov/coverage.xml --git-service gitlab_enterprise -F machine2 --job-code test2
