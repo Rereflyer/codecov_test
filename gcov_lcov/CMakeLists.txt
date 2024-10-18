@@ -24,6 +24,12 @@ message(STATUS "CMAKE_EXE_LINKER_FLAGS: ${CMAKE_EXE_LINKER_FLAGS}")
 
 add_library(math_functions SHARED math_functions.cpp)
 add_library(functions SHARED functions.cpp)
+add_library(arrayBoundary SHARED arrayBoundary.cpp)
+add_library(comparison SHARED comparison.cpp)
+add_library(compoundOperations SHARED compoundOperations.cpp)
+add_library(edgeCase SHARED edgeCase.cpp)
+add_library(recursion SHARED recursion.cpp)
+add_library(typeBoundary SHARED typeBoundary.cpp)
 
 if(CI_TEST)
     add_subdirectory(tests/ci_test)

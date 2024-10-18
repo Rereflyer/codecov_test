@@ -1,7 +1,10 @@
 // test_math_functions.cpp
 #include <iostream>
-#include "math_functions.h"
 #include "functions.h"
+#include "math_functions.h"
+#include "edgeCase.h"
+#include "recursion.h"
+#include "typeBoundary.h"
 #include <cassert>
 
 void test_add() {
@@ -63,6 +66,10 @@ int main() {
     assert(isPrime(2) == true);
     assert(isPrime(4) == false);
     // 未测试 n <= 1 的情况
+
+    edgeCaseTest();
+    recursionTest();
+    typeBoundaryTest();
 
     std::cout << "所有测试用例通过！" << std::endl;
     return 0;

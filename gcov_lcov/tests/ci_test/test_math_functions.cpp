@@ -1,6 +1,9 @@
 // test_math_functions.cpp
 #include <iostream>
 #include "math_functions.h"
+#include "arrayBoundary.h"
+#include "comparison.h"
+#include "compoundOperations.h"
 
 void test_add() {
     if (add(2, 3) == 5)
@@ -41,5 +44,10 @@ int main() {
     test_subtract();
     test_multiply();
     test_divide();
+
+    arrayBoundaryTest();
+    comparisonTest();
+    compoundOperationsTest();
+
     return 0;
 }
