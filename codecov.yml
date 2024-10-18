@@ -1,7 +1,7 @@
 flags:
-  ci_tests:
+  ci:
     paths:
       - "gcov_lcov/tests/ci_test/*"
-  daily_tests:
+  daily:
     paths:
       - "gcov_lcov/tests/daily_test/*"
