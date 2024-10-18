@@ -1,3 +1,6 @@
+#include <iostream>
+#include <climits>
+
 void typeBoundaryTest() {
     int maxInt = INT_MAX;
     int minInt = INT_MIN;

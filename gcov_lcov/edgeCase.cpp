@@ -1,3 +1,6 @@
+#include <iostream>
+#include "math_functions.h"
+
 void edgeCaseTest() {
     std::cout << "Large number multiplication: " << multiply(1e9, 1e9) << std::endl;
     std::cout << "Negative number addition: " << add(-5, -3) << std::endl;

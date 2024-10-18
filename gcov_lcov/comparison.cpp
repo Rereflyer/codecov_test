@@ -1,3 +1,5 @@
+#include <iostream>
+
 bool isGreater(int a, int b) {
     return a > b;
 }

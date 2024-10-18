@@ -1,3 +1,5 @@
+#include <iostream>
+
 int factorial(int n) {
     if (n < 0) {
         throw std::invalid_argument("Factorial of negative number");
