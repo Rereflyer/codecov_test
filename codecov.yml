@@ -28,15 +28,6 @@ coverage:
       daily:
         target: 100%
 
-comment:
-  layout: "reach, diff, flags, files"
-  behavior: default
-  require_changes: false
-  require_base: no
-  require_head: no
-  branches: null
-  flags: ci, daily
-
 flag_management:
   default_rules: # the rules that will be followed for any flag added, generally
     # carryforward: true
