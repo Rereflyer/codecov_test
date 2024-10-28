@@ -12,7 +12,7 @@
 
 flag_management:
   default_rules: # the rules that will be followed for any flag added, generally
-    carryforward: true
+    # carryforward: true
     statuses:
       - type: project
         target: auto
@@ -25,7 +25,7 @@ flag_management:
         - "gcov_lcov/*.h"
         - "gcov_lcov/*.cpp"
         - "gcov_lcov/tests/ci_test/*"
-      carryforward: true
+      # carryforward: true
       statuses:
         - type: project
           target: 20%
@@ -36,7 +36,7 @@ flag_management:
         - "gcov_lcov/*.h"
         - "gcov_lcov/*.cpp"
         - "gcov_lcov/tests/daily_test/*"
-      carryforward: true
+      # carryforward: true
       statuses:
       - type: project
         target: 20%

@@ -26,6 +26,7 @@ void test_multiply() {
         std::cout << "Test Multiply Failed" << std::endl;
 }
 
+
 void test_divide() {
     if (divide(6, 3) == 2)
         std::cout << "Test Divide Passed" << std::endl;
