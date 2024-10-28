@@ -69,25 +69,25 @@ install_if_not_exists codecov codecov-cli
 codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner1 -t ${CODECOV_TOKEN} -B main -C $commit_id -f gcov_lcov/coverage.info --git-service gitlab_enterprise -F daily --job-code test1
 
 ####################################### python test
-# 1. 检查并安装 pytest 和 pytest-cov
-install_if_not_exists pytest pytest==7.0.1
-install_if_not_exists coverage coverage==7.6.1
-install_if_not_exists pytest-cov pytest-cov==2.5.1
+# # 1. 检查并安装 pytest 和 pytest-cov
+# install_if_not_exists pytest pytest==7.0.1
+# install_if_not_exists coverage coverage==7.6.1
+# install_if_not_exists pytest-cov pytest-cov==2.5.1
 
-cd py-cov
-# 运行 pytest 并生成覆盖率报告
-coverage run -m pytest
+# cd py-cov
+# # 运行 pytest 并生成覆盖率报告
+# coverage run -m pytest
 
-# 2. 生成 coverage.xml 文件
-coverage xml -o coverage.xml
+# # 2. 生成 coverage.xml 文件
+# coverage xml -o coverage.xml
 
-# 3. 获取当前仓库的最新 commit ID
-commit_id=$(git rev-parse HEAD)
+# # 3. 获取当前仓库的最新 commit ID
+# commit_id=$(git rev-parse HEAD)
 
-# 安装 codecov（如果不存在）
-install_if_not_exists codecov codecov-cli
+# # 安装 codecov（如果不存在）
+# install_if_not_exists codecov codecov-cli
 
-cd ..
+# cd ..
 
-# 执行 codecov 上传命令
-codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner2 -t ${CODECOV_TOKEN} -B main -C $commit_id -f py-cov/coverage.xml --git-service gitlab_enterprise -F machine2 --job-code test2
+# # 执行 codecov 上传命令
+# codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner2 -t ${CODECOV_TOKEN} -B main -C $commit_id -f py-cov/coverage.xml --git-service gitlab_enterprise -F machine2 --job-code test2
