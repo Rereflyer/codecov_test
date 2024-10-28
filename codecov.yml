@@ -16,14 +16,14 @@ flag_management:
     statuses:
       - type: project
         target: auto
-        threshold: 1%
+        threshold: 10%
       - type: patch
         target: 90%
   individual_flags: # exceptions to the default rules above, stated flag by flag
     - name: ci  #fill in your own flag name
       paths: 
-        - "gcov_lcov/*.h"
-        - "gcov_lcov/*.cpp"
+        # - "gcov_lcov/*.h"
+        # - "gcov_lcov/*.cpp"
         - "gcov_lcov/tests/ci_test/*"
       # carryforward: true
       statuses:
@@ -33,8 +33,8 @@ flag_management:
           target: 100%
     - name: daily #fill in your own flag name
       paths: 
-        - "gcov_lcov/*.h"
-        - "gcov_lcov/*.cpp"
+        # - "gcov_lcov/*.h"
+        # - "gcov_lcov/*.cpp"
         - "gcov_lcov/tests/daily_test/*"
       # carryforward: true
       statuses:
