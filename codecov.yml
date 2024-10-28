@@ -18,19 +18,15 @@ coverage:
         threshold: 10%
       ci:
         target: 20%
-        flags: ci
       daily:
         target: 20%
-        flags: daily
     patch:
       default:
         target: 90%
       ci:
         target: 100%
-        flags: ci
       daily:
         target: 100%
-        flags: daily
 
 comment:
   layout: "reach, diff, flags, files"
