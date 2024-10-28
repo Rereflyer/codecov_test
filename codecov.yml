@@ -10,6 +10,37 @@
 #       - "gcov_lcov/*.cpp"
 #       - "gcov_lcov/tests/daily_test/*"
 
+coverage:
+  status:
+    project:
+      default:
+        target: auto
+        threshold: 10%
+      ci:
+        target: 20%
+        flags: ci
+      daily:
+        target: 20%
+        flags: daily
+    patch:
+      default:
+        target: 90%
+      ci:
+        target: 100%
+        flags: ci
+      daily:
+        target: 100%
+        flags: daily
+
+comment:
+  layout: "reach, diff, flags, files"
+  behavior: default
+  require_changes: false
+  require_base: no
+  require_head: no
+  branches: null
+  flags: ci, daily
+
 flag_management:
   default_rules: # the rules that will be followed for any flag added, generally
     # carryforward: true
