@@ -1,11 +1,44 @@
-flags:
-  ci:
-    paths:
-      - "gcov_lcov/*.h"
-      - "gcov_lcov/*.cpp"
-      - "gcov_lcov/tests/ci_test/*"
-  daily:
-    paths:
-      - "gcov_lcov/*.h"
-      - "gcov_lcov/*.cpp"
-      - "gcov_lcov/tests/daily_test/*"
+# flags:
+#   ci:
+#     paths:
+#       - "gcov_lcov/*.h"
+#       - "gcov_lcov/*.cpp"
+#       - "gcov_lcov/tests/ci_test/*"
+#   daily:
+#     paths:
+#       - "gcov_lcov/*.h"
+#       - "gcov_lcov/*.cpp"
+#       - "gcov_lcov/tests/daily_test/*"
+
+flag_management:
+  default_rules: # the rules that will be followed for any flag added, generally
+    carryforward: true
+    statuses:
+      - type: project
+        target: auto
+        threshold: 1%
+      - type: patch
+        target: 90%
+  individual_flags: # exceptions to the default rules above, stated flag by flag
+    - name: ci  #fill in your own flag name
+      paths: 
+        - "gcov_lcov/*.h"
+        - "gcov_lcov/*.cpp"
+        - "gcov_lcov/tests/ci_test/*"
+      carryforward: true
+      statuses:
+        - type: project
+          target: 20%
+        - type: patch
+          target: 100%
+    - name: daily #fill in your own flag name
+      paths: 
+        - "gcov_lcov/*.h"
+        - "gcov_lcov/*.cpp"
+        - "gcov_lcov/tests/daily_test/*"
+      carryforward: true
+      statuses:
+      - type: project
+        target: 20%
+      - type: patch
+        target: 100%
