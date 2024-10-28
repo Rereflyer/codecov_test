@@ -31,10 +31,10 @@ coverage:
 flags:
   ci:
     paths:
-      - gcov_lcov/tests/ci_test
+      - gcov_lcov/tests/ci_test/
   daily:
     paths:
-      - gcov_lcov/tests/daily_test
+      - gcov_lcov/tests/daily_test/
 
 # flag_management:
 #   default_rules: # the rules that will be followed for any flag added, generally
