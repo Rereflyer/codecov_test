@@ -75,7 +75,7 @@ coverage:
       default:
         # basic
         target: auto #default
-        threshold: 0%
+        threshold: 10%
         base: auto 
 
 comment:                  #this is a top-level key
@@ -95,6 +95,7 @@ flag_management:
         - type: project
           target: 50%
           threshold: 1%
+      carryforward: true
     - name: daily
       paths:
         - gcov_lcov/tests/daily_test/
@@ -102,3 +103,4 @@ flag_management:
         - type: project
           target: 50%
           threshold: 1%
+      carryforward: true
