@@ -10,31 +10,31 @@
 #       - "gcov_lcov/*.cpp"
 #       - "gcov_lcov/tests/daily_test/*"
 
-coverage:
-  status:
-    project:
-      default:
-        target: auto
-        threshold: 10%
-      ci:
-        target: 20%
-      daily:
-        target: 20%
-    patch:
-      default:
-        target: 90%
-      ci:
-        target: 100%
-      daily:
-        target: 100%
+# coverage:
+#   status:
+#     project:
+#       default:
+#         target: auto
+#         threshold: 10%
+#       ci:
+#         target: 20%
+#       daily:
+#         target: 20%
+#     patch:
+#       default:
+#         target: 90%
+#       ci:
+#         target: 100%
+#       daily:
+#         target: 100%
 
-flags:
-  ci:
-    paths:
-      - gcov_lcov/tests/ci_test/
-  daily:
-    paths:
-      - gcov_lcov/tests/daily_test/
+# flags:
+#   ci:
+#     paths:
+#       - gcov_lcov/tests/ci_test/
+#   daily:
+#     paths:
+#       - gcov_lcov/tests/daily_test/
 
 # flag_management:
 #   default_rules: # the rules that will be followed for any flag added, generally
@@ -68,3 +68,29 @@ flags:
 #         target: 20%
 #       - type: patch
 #         target: 100%
+
+coverage:
+  status:
+    project: #add everything under here, more options at https://docs.codecov.com/docs/commit-status
+      default:
+        # basic
+        target: auto #default
+        threshold: 0%
+        base: auto 
+
+flag_management:
+  individual_flags:
+    - name: ci
+      paths:
+        - gcov_lcov/tests/ci_test/
+      statuses:
+        - type: project
+          target: 50%
+          threshold: 1%
+    - name: daily
+      paths:
+        - gcov_lcov/tests/daily_test/
+      statuses:
+        - type: project
+          target: 50%
+          threshold: 1%
