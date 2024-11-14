@@ -80,7 +80,8 @@ coverage:
 
 # 需要排除的文件/目录
 ignore:
-  - "**/tests/*"           # 忽略所有测试目录中的文件
+  - "**/tests/**"           # 忽略所有测试目录中的文件
+  - "**/py-cov/*"           # 忽略所有测试目录中的文件
   - "**/migrations/*"      # 忽略所有数据库迁移相关的文件
 
 comment:                  #this is a top-level key
