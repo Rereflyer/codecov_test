@@ -95,16 +95,16 @@ comment:                  #this is a top-level key
 flag_management:
   individual_flags:
     - name: ci
-      # paths:
-      #   - gcov_lcov/tests/ci_test/*.cpp
+      paths:
+        - gcov_lcov
       statuses:
         - type: project
           target: 50%
           threshold: 1%
       carryforward: true
     - name: daily
-      # paths:
-      #   - gcov_lcov/tests/daily_test/*.cpp
+      paths:
+        - gcov_lcov
       statuses:
         - type: project
           target: 50%
