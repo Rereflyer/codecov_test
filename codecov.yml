@@ -108,36 +108,55 @@
 # 设置默认的覆盖率目标阈值
 coverage:
   status:
-    project: true  # 启用项目级的覆盖率目标
-    target: 90%     # 设置全项目的覆盖率目标为 90%
-    threshold: 1%   # 设置覆盖率波动的容忍度为 1%
+    project: 
+      default:      # 启用项目级的覆盖率目标
+        target: 90%     # 设置全项目的覆盖率目标为 90%
+        threshold: 1%   # 设置覆盖率波动的容忍度为 1%
+      ci:
+        target: 80%
+        flags:
+          - ci
+      daily:
+        target: 80%
+        flags:
+          - daily
+
+comment:                  #this is a top-level key
+  layout: " diff, flags, files"
+  behavior: default
+  require_changes: false  # if true: only post the comment if coverage changes
+  require_base: false        # [true :: must have a base report to post]
+  require_head: true       # [true :: must have a head report to post]
+  hide_project_coverage: false # [true :: only show coverage on the git diff aka patch coverage]]
 
 # 覆盖率报告中使用的不同的 flag
 flags:
-  - ci         # 单元测试的覆盖率
-  - daily      # 集成测试的覆盖率
+  ci         # 单元测试的覆盖率
+    carryforward: true
+  daily      # 集成测试的覆盖率
+    carryforward: true
 
 # # 需要排除的文件/目录
 # ignore:
 #   - "**/tests/*"           # 忽略所有测试目录中的文件
 #   - "**/migrations/*"      # 忽略所有数据库迁移相关的文件
 
-# 覆盖率目标配置：为每个测试阶段设置不同的目标
-coverage:
-  flags:
-    ci:
-      target: 90%            # 单元测试的覆盖率目标为 90%
-    daily:
-      target: 85%            # 集成测试的覆盖率目标为 85%
+# # 覆盖率目标配置：为每个测试阶段设置不同的目标
+# coverage:
+#   flags:
+#     ci:
+#       target: 90%            # 单元测试的覆盖率目标为 90%
+#     daily:
+#       target: 85%            # 集成测试的覆盖率目标为 85%
 
-# 其他可选设置（例如覆盖率报告的更新方式）
-report:
-  base: false               # 禁止提交基于其他提交的合并覆盖率
-  update:
-    commit: true            # 提交时更新覆盖率数据
+# # 其他可选设置（例如覆盖率报告的更新方式）
+# report:
+#   base: false               # 禁止提交基于其他提交的合并覆盖率
+#   update:
+#     commit: true            # 提交时更新覆盖率数据
 
-# 用于覆盖率分析的报告类型
-coverage:
-  status:
-    patch: true             # 在每次拉取请求时启用覆盖率检查
-    changes: true           # 在每次代码变更时启用覆盖率变化检查
+# # 用于覆盖率分析的报告类型
+# coverage:
+#   status:
+#     patch: true             # 在每次拉取请求时启用覆盖率检查
+#     changes: true           # 在每次代码变更时启用覆盖率变化检查
