@@ -45,7 +45,7 @@ install_if_not_exists codecov codecov-cli
 
 # 执行 codecov 上传命令
 echo "codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner -t ${CODECOV_TOKEN} -B $branch_name -C $commit_id -f gcov_lcov/coverage.info --git-service gitlab_enterprise -F ci"
-codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner -t ${CODECOV_TOKEN} -B $branch_name -C $commit_id -f gcov_lcov/coverage.info --git-service gitlab_enterprise -F ci
+codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner -t ${CODECOV_TOKEN} -B $branch_name -C $commit_id -f gcov_lcov/coverage.info --git-service gitlab_enterprise -F ci --parent-sha "6535be5f49f02d30fa44577d126b6b313f261f7d"
 # codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner -t ${CODECOV_TOKEN} -B main -C $commit_id -f coverage.info --git-service gitlab_enterprise
 
 ####################################### gcov test daily
@@ -74,7 +74,7 @@ install_if_not_exists codecov codecov-cli
 
 # 执行 codecov 上传命令
 echo "codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner -t ${CODECOV_TOKEN} -B $branch_name -C $commit_id -f gcov_lcov/coverage.info --git-service gitlab_enterprise -F daily"
-codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner -t ${CODECOV_TOKEN} -B $branch_name -C $commit_id -f gcov_lcov/coverage.info --git-service gitlab_enterprise -F daily
+codecovcli -v -u ${CODECOV_URL} upload-process -n multi_coverage_runner -t ${CODECOV_TOKEN} -B $branch_name -C $commit_id -f gcov_lcov/coverage.info --git-service gitlab_enterprise -F daily --parent-sha "6535be5f49f02d30fa44577d126b6b313f261f7d"
 
 ####################################### python test
 # # 1. 检查并安装 pytest 和 pytest-cov
